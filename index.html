@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101828" />
+  <title>Namma Space | Indoor Navigator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Namma Space home">
+        <span class="brand-mark">N</span>
+        <span><strong>Namma Space</strong><small>INDOOR WAYFINDING</small></span>
+      </a>
+      <div class="side-section">
+        <p class="eyebrow">YOUR DESTINATION</p>
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search places..." autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <div id="searchResults" class="search-results" hidden></div>
+      </div>
+      <div class="side-section">
+        <p class="eyebrow">POPULAR PLACES</p>
+        <div id="placeList" class="place-list"></div>
+      </div>
+      <div class="side-section route-section">
+        <p class="eyebrow">YOUR ROUTE</p>
+        <div class="route-card">
+          <div class="route-row"><span class="route-dot start"></span><div><small>STARTING POINT</small><strong id="startLabel">Main Entrance</strong></div></div>
+          <div class="route-connector"></div>
+          <div class="route-row"><span class="route-dot end"></span><div><small>DESTINATION</small><strong id="destinationLabel">Choose a place</strong></div></div>
+          <div class="route-meta"><span id="routeDistance">— m</span><span id="routeTime">— min walk</span></div>
+          <button id="clearRoute" class="text-button" type="button">Clear route</button>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <span class="status-dot"></span><span>Interactive demo map</span>
+        <button id="helpButton" class="help-button" title="About this demo" aria-label="About this demo">?</button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow">WELCOME TO YOUR SPACE</p><h1>Find your way <span>with confidence.</span></h1></div>
+        <div class="topbar-actions">
+          <div class="floor-select"><span>FLOOR</span><select id="floorSelect" aria-label="Select floor"><option value="1">Level 1</option></select></div>
+          <button id="resetView" class="icon-button" type="button" title="Reset view" aria-label="Reset view">↺</button>
+        </div>
+      </header>
+      <section class="map-card">
+        <div class="map-toolbar">
+          <div class="map-title"><span class="live-indicator"></span><div><strong>3D Interactive Map</strong><small>Drag to rotate · Scroll to zoom</small></div></div>
+          <div class="map-tools"><button id="toggleLabels" class="tool-button active" type="button">Labels <span>●</span></button><button id="toggleRoute" class="tool-button active" type="button">Route <span>↗</span></button></div>
+        </div>
+        <div id="sceneWrap" class="scene-wrap">
+          <div id="loading" class="loading"><div class="loader"></div><span>Preparing your 3D space…</span></div>
+          <div class="map-legend"><span><i class="legend-dot green"></i> You are here</span><span><i class="legend-dot purple"></i> Destination</span><span><i class="legend-line"></i> Suggested route</span></div>
+          <div class="map-hint">3D VIEW <span>•</span> LEVEL 1</div>
+        </div>
+        <div class="map-bottom"><div class="map-note"><span class="info-icon">i</span><span>Choose a place from search or the list to calculate a walking route.</span></div><div class="zoom-controls"><button id="zoomIn" type="button" aria-label="Zoom in">+</button><button id="zoomOut" type="button" aria-label="Zoom out">−</button></div></div>
+      </section>
+      <section class="feature-grid">
+        <article class="feature-card"><span class="feature-icon violet">⌖</span><div><small>NAVIGATION</small><strong>Smart pathfinding</strong><p>Finds a route around walls and obstacles.</p></div></article>
+        <article class="feature-card"><span class="feature-icon mint">◈</span><div><small>SPATIAL VIEW</small><strong>Explore in 3D</strong><p>Rotate and zoom to understand the layout.</p></div></article>
+        <article class="feature-card"><span class="feature-icon amber">⌕</span><div><small>QUICK SEARCH</small><strong>Places at your fingertips</strong><p>Search rooms, services, and facilities.</p></div></article>
+      </section>
+      <footer class="page-footer">NAMMA SPACE CONCEPT DEMO <span>•</span> Sample layout for learning and prototyping</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="helpModal" class="modal" hidden><div class="modal-card">
+    <button id="closeHelp" class="modal-close" type="button" aria-label="Close">×</button>
+    <p class="eyebrow">ABOUT THE DEMO</p><h2>Welcome to Namma Space</h2>
+    <p>This is a front-end prototype with a sample building, searchable points of interest, and grid-based A* pathfinding. The map is illustrative, not a real venue map.</p>
+    <ul><li>Choose a destination to draw a route.</li><li>Drag to orbit and scroll to zoom.</li><li>Pathfinding avoids the sample walls and blocked cells.</li></ul>
+    <p class="modal-note">To use this for a real building, replace the sample floor plan and coordinates with verified venue data.</p>
+    <button id="closeHelpBottom" class="primary-button" type="button">Got it</button>
+  </div></div>
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"}}
+  </script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
